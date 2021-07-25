@@ -25,10 +25,11 @@ extension FlavorString on Flavor {
 }
 
 class FlavorBanner extends StatelessWidget {
-  FlavorBanner({required this.child, this.flavor});
+  FlavorBanner({required this.child, this.flavor, this.labelBuilder});
 
   final Widget? child;
   final Flavor? flavor;
+  final String Function(Flavor flavor)? labelBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class FlavorBanner extends StatelessWidget {
   Widget _buildBanner(BuildContext context, Flavor flavor) {
     return CustomPaint(
       painter: BannerPainter(
-        message: flavor.label.toUpperCase(),
+        message: labelBuilder?.call(flavor) ?? flavor.label.toUpperCase(),
         textDirection: Directionality.of(context),
         layoutDirection: Directionality.of(context),
         location: BannerLocation.topStart,
