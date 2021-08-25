@@ -36,15 +36,12 @@ class BitTapableText extends StatelessWidget {
     );
   }
 
-  static buildNormalTextStyle(BuildContext context) => Theme.of(context)
-      .textTheme
-      .bodyText1
-      ?.copyWith(fontWeight: FontWeight.w400, fontSize: 12, height: 1.4);
+  static buildNormalTextStyle(BuildContext context) =>
+      Theme.of(context).textTheme.bodyText1;
 
   static buildActiontextStyle(BuildContext context, Color color) =>
       buildNormalTextStyle(context)
-          ?.copyWith(color: color, fontWeight: FontWeight.w500)
-          .apply(fontSizeDelta: -0.5);
+          ?.copyWith(color: color, fontWeight: FontWeight.w500);
 
   final String? normalText;
   final String text;
