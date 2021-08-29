@@ -17,7 +17,7 @@ class ResultBuilder<T> extends StatelessWidget {
   final WidgetBuilder? onLoading;
   final WidgetBuilder? onIdle;
   final _ValueChangedWidgetBuilder<String?>? onError;
-  final _ValueChangedWidgetBuilder<T?> onSuccess;
+  final _ValueChangedWidgetBuilder<T> onSuccess;
   final bool centered;
 
   @override
@@ -37,7 +37,7 @@ class ResultBuilder<T> extends StatelessWidget {
           );
     }
     if (result.isSuccess) {
-      widget = onSuccess.call(context, result.data);
+      widget = onSuccess.call(context, result.data as T);
     }
     if (centered) {
       return Center(child: widget);
