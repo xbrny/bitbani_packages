@@ -68,6 +68,7 @@ class BitTapableText extends StatelessWidget {
             text,
             onTap: onTap,
             actionColor: actionColor,
+            style: style,
           ),
           ...(extraText ?? [])
         ],
