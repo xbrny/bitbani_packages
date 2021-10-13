@@ -15,7 +15,7 @@ class BitTapableText extends StatelessWidget {
     this.textAlign = TextAlign.left,
   }) : super(key: key);
 
-  static InlineSpan inlineSpan(
+  static InlineSpan actionTextSpan(
     BuildContext context,
     String text, {
     required VoidCallback onTap,
@@ -24,13 +24,14 @@ class BitTapableText extends StatelessWidget {
     TextStyle? style,
   }) {
     return WidgetSpan(
-      alignment: PlaceholderAlignment.middle,
+      alignment: PlaceholderAlignment.baseline,
+      baseline: TextBaseline.alphabetic,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onTap,
         child: Text(
           text,
-          style: style ?? buildActiontextStyle(context, actionColor),
+          style: style ?? buildActionTextStyle(context, actionColor),
         ),
       ),
     );
@@ -39,7 +40,7 @@ class BitTapableText extends StatelessWidget {
   static TextStyle? buildNormalTextStyle(BuildContext context) =>
       Theme.of(context).textTheme.bodyText1;
 
-  static TextStyle? buildActiontextStyle(BuildContext context, Color color) =>
+  static TextStyle? buildActionTextStyle(BuildContext context, Color color) =>
       buildNormalTextStyle(context)
           ?.copyWith(color: color, fontWeight: FontWeight.w500);
 
@@ -62,7 +63,7 @@ class BitTapableText extends StatelessWidget {
         style: normalTextStyle ?? buildNormalTextStyle(context),
         children: [
           if (normalText != null) TextSpan(text: ' '),
-          BitTapableText.inlineSpan(
+          BitTapableText.actionTextSpan(
             context,
             text,
             onTap: onTap,
