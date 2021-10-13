@@ -36,10 +36,10 @@ class BitTapableText extends StatelessWidget {
     );
   }
 
-  static buildNormalTextStyle(BuildContext context) =>
+  static TextStyle? buildNormalTextStyle(BuildContext context) =>
       Theme.of(context).textTheme.bodyText1;
 
-  static buildActiontextStyle(BuildContext context, Color color) =>
+  static TextStyle? buildActiontextStyle(BuildContext context, Color color) =>
       buildNormalTextStyle(context)
           ?.copyWith(color: color, fontWeight: FontWeight.w500);
 
@@ -56,9 +56,8 @@ class BitTapableText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget result = RichText(
-      textAlign: textAlign,
-      text: TextSpan(
+    Widget result = Text.rich(
+      TextSpan(
         text: normalText ?? '',
         style: normalTextStyle ?? buildNormalTextStyle(context),
         children: [
@@ -73,6 +72,7 @@ class BitTapableText extends StatelessWidget {
           ...(extraText ?? [])
         ],
       ),
+      textAlign: textAlign,
     );
 
     if (margin != null)
