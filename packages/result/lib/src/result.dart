@@ -3,14 +3,14 @@ class Result<T> {
   final String? message;
   final T? data;
 
-  Result({
+  const Result({
     required this.status,
     this.message,
     this.data,
   });
 
-  factory Result.idle() => Result(status: _ResultStatus.idle);
-  factory Result.loading() => Result(status: _ResultStatus.loading);
+  factory Result.idle() => const Result(status: _ResultStatus.idle);
+  factory Result.loading() => const Result(status: _ResultStatus.loading);
   factory Result.success(T data) =>
       Result(status: _ResultStatus.success, data: data);
   factory Result.error(String message) =>
