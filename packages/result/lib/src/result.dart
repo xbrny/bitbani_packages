@@ -1,5 +1,5 @@
 class Result<T> {
-  final _ResultStatus status;
+  final ResultStatus status;
   final String? message;
   final T? data;
 
@@ -9,17 +9,17 @@ class Result<T> {
     this.data,
   });
 
-  factory Result.idle() => const Result(status: _ResultStatus.idle);
-  factory Result.loading() => const Result(status: _ResultStatus.loading);
+  factory Result.idle() => const Result(status: ResultStatus.idle);
+  factory Result.loading() => const Result(status: ResultStatus.loading);
   factory Result.success(T data) =>
-      Result(status: _ResultStatus.success, data: data);
+      Result(status: ResultStatus.success, data: data);
   factory Result.error(String message) =>
-      Result(status: _ResultStatus.error, message: message.toString());
+      Result(status: ResultStatus.error, message: message.toString());
 
-  bool get isIdle => status == _ResultStatus.idle;
-  bool get isLoading => status == _ResultStatus.loading;
-  bool get isSuccess => status == _ResultStatus.success;
-  bool get isError => status == _ResultStatus.error;
+  bool get isIdle => status == ResultStatus.idle;
+  bool get isLoading => status == ResultStatus.loading;
+  bool get isSuccess => status == ResultStatus.success;
+  bool get isError => status == ResultStatus.error;
 
   @override
   String toString() {
@@ -27,7 +27,7 @@ class Result<T> {
   }
 }
 
-enum _ResultStatus {
+enum ResultStatus {
   idle,
   loading,
   success,
