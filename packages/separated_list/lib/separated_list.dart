@@ -4,8 +4,10 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class SeparatedList extends StatelessWidget {
-  const SeparatedList({
+const _kSeparatorSize = 8.0;
+
+class SeparatedFlex extends StatelessWidget {
+  const SeparatedFlex({
     Key? key,
     this.axis = Axis.horizontal,
     this.children = const <Widget>[],
@@ -27,46 +29,40 @@ class SeparatedList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late Widget _separator;
-    Widget result;
+
+    late Widget result;
 
     if (separator == null) {
       _separator = Axis.horizontal == axis
-          ? const SizedBox(width: 8)
-          : const SizedBox(height: 8);
+          ? const SizedBox(width: _kSeparatorSize)
+          : const SizedBox(height: _kSeparatorSize);
     } else {
       _separator = separator!;
     }
+
     final childCount = _computeActualChildCount(children.length);
 
     final modifiedChildren = List.generate(childCount, (index) {
       final itemIndex = index ~/ 2;
-      Widget widget;
+
+      late Widget widget;
+
       if (index.isEven) {
         widget = children[itemIndex];
       } else {
         widget = _separator;
       }
+
       return widget;
     });
 
-    switch (axis) {
-      case Axis.horizontal:
-        result = Row(
-          children: modifiedChildren,
-          mainAxisAlignment: mainAxisAlignment,
-          mainAxisSize: mainAxisSize,
-          crossAxisAlignment: crossAxisAlignment,
-        );
-        break;
-      case Axis.vertical:
-        result = Column(
-          children: modifiedChildren,
-          mainAxisAlignment: mainAxisAlignment,
-          mainAxisSize: mainAxisSize,
-          crossAxisAlignment: crossAxisAlignment,
-        );
-        break;
-    }
+    result = Flex(
+      direction: axis,
+      children: modifiedChildren,
+      mainAxisAlignment: mainAxisAlignment,
+      mainAxisSize: mainAxisSize,
+      crossAxisAlignment: crossAxisAlignment,
+    );
 
     if (padding != null && children.isNotEmpty) {
       return Padding(
