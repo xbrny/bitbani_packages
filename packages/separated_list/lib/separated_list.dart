@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 const _kSeparatorSize = 8.0;
 
-class SeparatedFlex extends StatelessWidget {
-  const SeparatedFlex({
+class SeparatedList extends StatelessWidget {
+  const SeparatedList({
     Key? key,
     this.axis = Axis.horizontal,
     this.children = const <Widget>[],
