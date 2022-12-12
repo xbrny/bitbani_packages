@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BitInfoListTile extends StatelessWidget {
-  BitInfoListTile({
+  const BitInfoListTile({
+    Key? key,
     required this.title,
     this.value,
     this.padding,
@@ -9,7 +10,7 @@ class BitInfoListTile extends StatelessWidget {
     this.valueFlex = 2,
     this.titleStyle,
     this.valueStyle,
-  });
+  }) : super(key: key);
 
   final String title;
   final String? value;
@@ -22,7 +23,8 @@ class BitInfoListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+      padding:
+          padding ?? const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -51,7 +53,7 @@ class BitInfoListTile extends StatelessWidget {
         color: Colors.grey.shade700,
         fontSize: 13,
       );
-  static get defaultValueStyle => TextStyle(
+  static get defaultValueStyle => const TextStyle(
         fontWeight: FontWeight.w500,
       );
 }

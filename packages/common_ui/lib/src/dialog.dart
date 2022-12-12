@@ -52,25 +52,25 @@ class BitCustomAlertDialog extends StatelessWidget {
       actions: [
         if (secondaryLabel != null)
           ElevatedButton(
-            child: Text(secondaryLabel),
             onPressed: onSecondary,
             style: ElevatedButton.styleFrom(
+              foregroundColor: secondaryLabelColor,
               minimumSize: Size(200, buttonHeight),
+              backgroundColor: secondaryColor,
               textStyle: textStyle,
-              primary: secondaryColor,
-              onPrimary: secondaryLabelColor,
             ),
+            child: Text(secondaryLabel),
           ),
         if (primaryLabel != null)
           ElevatedButton(
-            child: Text(primaryLabel),
             onPressed: onPrimary,
             style: ElevatedButton.styleFrom(
+              foregroundColor: primaryLabelColor,
               minimumSize: Size(200, buttonHeight),
+              backgroundColor: primaryColor,
               textStyle: textStyle,
-              primary: primaryColor,
-              onPrimary: primaryLabelColor,
             ),
+            child: Text(primaryLabel),
           ),
       ],
     );
@@ -140,15 +140,15 @@ class BitCustomAlertDialog extends StatelessWidget {
               dialogTheme.titleTextStyle ??
               theme.textTheme.headline6!,
           child: Semantics(
-            child: title,
             namesRoute: true,
             container: true,
+            child: title,
           ),
         ),
       );
     }
 
-    if (content != null)
+    if (content != null) {
       contentWidget = Padding(
         padding: contentPadding ??
             EdgeInsets.only(bottom: actions != null ? _actionsTopSpacing : 0),
@@ -159,13 +159,14 @@ class BitCustomAlertDialog extends StatelessWidget {
           child: content!,
         ),
       );
+    }
 
     if (actions != null) {
       actionsWidget = Theme(
         data: theme.copyWith(
           buttonTheme: theme.buttonTheme.copyWith(
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            shape: BeveledRectangleBorder(),
+            shape: const BeveledRectangleBorder(),
           ),
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
@@ -180,12 +181,12 @@ class BitCustomAlertDialog extends StatelessWidget {
           child: SeparatedList(
             axis: actionsAxis,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: actionsAxis == Axis.horizontal
-                ? actions!.map((action) => Expanded(child: action)).toList()
-                : actions!.reversed.toList(),
             separator: actionsAxis == Axis.horizontal
                 ? const SizedBox(width: _actionsSpacing)
                 : const SizedBox(height: _actionsSpacing),
+            children: actionsAxis == Axis.horizontal
+                ? actions!.map((action) => Expanded(child: action)).toList()
+                : actions!.reversed.toList(),
           ),
         ),
       );
@@ -207,12 +208,13 @@ class BitCustomAlertDialog extends StatelessWidget {
       ),
     );
 
-    if (label != null)
+    if (label != null) {
       dialogChild = Semantics(
         namesRoute: true,
         label: label,
         child: dialogChild,
       );
+    }
 
     return Dialog(
       backgroundColor: backgroundColor,

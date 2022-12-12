@@ -25,7 +25,12 @@ extension FlavorString on Flavor {
 }
 
 class FlavorBanner extends StatelessWidget {
-  FlavorBanner({required this.child, this.flavor, this.labelBuilder});
+  const FlavorBanner({
+    Key? key,
+    required this.child,
+    this.flavor,
+    this.labelBuilder,
+  }) : super(key: key);
 
   final Widget? child;
   final Flavor? flavor;
@@ -33,28 +38,30 @@ class FlavorBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late Flavor _flavor;
+    late Flavor localFlavor;
 
     if (flavor == null) {
       if (EnvironmentFlavor.isDev) {
-        _flavor = Flavor.development;
+        localFlavor = Flavor.development;
       } else if (EnvironmentFlavor.isStaging) {
-        _flavor = Flavor.staging;
+        localFlavor = Flavor.staging;
       } else if (EnvironmentFlavor.isProduction) {
-        _flavor = Flavor.production;
+        localFlavor = Flavor.production;
       } else {
-        _flavor = Flavor.unknown;
+        localFlavor = Flavor.unknown;
       }
     } else {
-      _flavor = flavor!;
+      localFlavor = flavor!;
     }
 
-    if (_flavor == Flavor.production) return child ?? const SizedBox.shrink();
+    if (localFlavor == Flavor.production) {
+      return child ?? const SizedBox.shrink();
+    }
 
     return Stack(
       children: <Widget>[
         child ?? const SizedBox.shrink(),
-        _buildBanner(context, _flavor),
+        _buildBanner(context, localFlavor),
       ],
     );
   }

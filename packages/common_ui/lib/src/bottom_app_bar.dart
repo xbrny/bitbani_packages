@@ -20,6 +20,9 @@ class BitCustomBottomBar extends StatelessWidget {
     EdgeInsetsGeometry? padding,
   }) {
     return BitCustomBottomBar(
+      boxShadow: boxShadow,
+      color: color,
+      padding: padding,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -41,9 +44,6 @@ class BitCustomBottomBar extends StatelessWidget {
             ),
         ],
       ),
-      boxShadow: boxShadow,
-      color: color,
-      padding: padding,
     );
   }
 
@@ -55,11 +55,12 @@ class BitCustomBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding ?? EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding:
+          padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         boxShadow: boxShadow ??
             [
-              BoxShadow(
+              const BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.05),
                   offset: Offset(0, -0.5),
                   blurRadius: 5),

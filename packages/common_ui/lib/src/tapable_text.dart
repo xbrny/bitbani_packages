@@ -62,7 +62,7 @@ class BitTapableText extends StatelessWidget {
         text: normalText ?? '',
         style: normalTextStyle ?? buildNormalTextStyle(context),
         children: [
-          if (normalText != null) TextSpan(text: ' '),
+          if (normalText != null) const TextSpan(text: ' '),
           BitTapableText.actionTextSpan(
             context,
             text,
@@ -76,11 +76,12 @@ class BitTapableText extends StatelessWidget {
       textAlign: textAlign,
     );
 
-    if (margin != null)
+    if (margin != null) {
       return Padding(
         padding: margin!,
         child: result,
       );
+    }
 
     return result;
   }

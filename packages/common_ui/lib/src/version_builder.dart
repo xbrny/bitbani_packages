@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class VersionBuilder extends StatefulWidget {
-  VersionBuilder({required this.builder});
+  const VersionBuilder({Key? key, required this.builder}) : super(key: key);
 
   final Widget Function(
     BuildContext context,
@@ -10,7 +10,7 @@ class VersionBuilder extends StatefulWidget {
   )? builder;
 
   @override
-  _VersionBuilderState createState() => _VersionBuilderState();
+  State<VersionBuilder> createState() => _VersionBuilderState();
 }
 
 class _VersionBuilderState extends State<VersionBuilder> {
@@ -19,7 +19,7 @@ class _VersionBuilderState extends State<VersionBuilder> {
 
   @override
   void initState() {
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       try {
         final packageInfo = await PackageInfo.fromPlatform();
         version = 'v${packageInfo.version}';
@@ -55,16 +55,17 @@ class AppInfoDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('App info'),
+      title: const Text('App info'),
       content: FutureBuilder<PackageInfo>(
         future: PackageInfo.fromPlatform(),
         builder: (context, result) {
           if (!result.hasData) return const CircularProgressIndicator();
-          if (result.hasError)
+          if (result.hasError) {
             return const Text(
               'Unable to get package info',
               textAlign: TextAlign.center,
             );
+          }
 
           String appName = result.data?.appName ?? '-';
           String packageName = result.data?.packageName ?? '-';
@@ -77,25 +78,25 @@ class AppInfoDialog extends StatelessWidget {
             children: <Widget>[
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: Text('App name'),
+                title: const Text('App name'),
                 trailing: Text(appName),
                 dense: true,
               ),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: Text('Package name'),
+                title: const Text('Package name'),
                 trailing: Text(packageName),
                 dense: true,
               ),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: Text('Version'),
+                title: const Text('Version'),
                 trailing: Text(version),
                 dense: true,
               ),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: Text('Build number'),
+                title: const Text('Build number'),
                 trailing: Text(buildNumber),
                 dense: true,
               ),
