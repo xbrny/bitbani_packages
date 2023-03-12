@@ -42,7 +42,8 @@ class BitTapableText extends StatelessWidget {
 
   static TextStyle? buildActionTextStyle(BuildContext context, Color color) =>
       buildNormalTextStyle(context)
-          ?.copyWith(color: color, fontWeight: FontWeight.w500);
+          ?.copyWith(color: color, fontWeight: FontWeight.w500)
+          .apply(fontSizeDelta: -1);
 
   final String? normalText;
   final String text;
