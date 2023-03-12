@@ -7,6 +7,7 @@ class BitCustomBottomBar extends StatelessWidget {
     this.boxShadow,
     this.color,
     this.padding,
+    this.useSafeArea = true,
   }) : super(key: key);
 
   factory BitCustomBottomBar.withButton({
@@ -18,11 +19,13 @@ class BitCustomBottomBar extends StatelessWidget {
     List<BoxShadow>? boxShadow,
     Color? color,
     EdgeInsetsGeometry? padding,
+    bool useSafeArea = true,
   }) {
     return BitCustomBottomBar(
       boxShadow: boxShadow,
       color: color,
       padding: padding,
+      useSafeArea: useSafeArea,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -51,6 +54,7 @@ class BitCustomBottomBar extends StatelessWidget {
   final List<BoxShadow>? boxShadow;
   final Color? color;
   final EdgeInsetsGeometry? padding;
+  final bool useSafeArea;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +71,7 @@ class BitCustomBottomBar extends StatelessWidget {
             ],
         color: color ?? Theme.of(context).canvasColor,
       ),
-      child: SafeArea(child: child!),
+      child: useSafeArea ? SafeArea(child: child!) : child,
     );
   }
 }
