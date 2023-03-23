@@ -43,11 +43,13 @@ class _VersionBuilderState extends State<VersionBuilder> {
 }
 
 class AppInfoDialog extends StatelessWidget {
+  const AppInfoDialog({super.key});
+
   static Future<T?> show<T>(BuildContext context) {
     return showDialog<T>(
       context: context,
       builder: (context) {
-        return AppInfoDialog();
+        return const AppInfoDialog();
       },
     );
   }

@@ -35,7 +35,7 @@ class BitCustomBottomBar extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 14),
               child: top,
             ),
-          ElevatedButton(
+          FilledButton(
             onPressed: onPressed,
             style: buttonStyle,
             child: Text(text),
@@ -71,7 +71,7 @@ class BitCustomBottomBar extends StatelessWidget {
             ],
         color: color ?? Theme.of(context).canvasColor,
       ),
-      child: useSafeArea ? SafeArea(child: child!) : child,
+      child: useSafeArea ? SafeArea(top: false, child: child!) : child,
     );
   }
 }

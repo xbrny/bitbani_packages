@@ -1,5 +1,5 @@
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:separated_list/separated_list.dart';
 
 const double _defaultButtonHeight = 42.0;
 
@@ -138,7 +138,7 @@ class BitCustomAlertDialog extends StatelessWidget {
         child: DefaultTextStyle(
           style: titleTextStyle ??
               dialogTheme.titleTextStyle ??
-              theme.textTheme.headline6!,
+              theme.textTheme.titleLarge!,
           child: Semantics(
             namesRoute: true,
             container: true,
@@ -155,7 +155,7 @@ class BitCustomAlertDialog extends StatelessWidget {
         child: DefaultTextStyle(
           style: contentTextStyle ??
               dialogTheme.contentTextStyle ??
-              theme.textTheme.subtitle1!,
+              theme.textTheme.titleMedium!,
           child: content!,
         ),
       );

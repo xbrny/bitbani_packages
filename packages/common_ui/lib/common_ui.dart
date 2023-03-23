@@ -10,3 +10,4 @@ export 'src/text_divider.dart';
 export 'src/text_divider.dart';
 export 'src/unfocus.dart';
 export 'src/version_builder.dart';
+export 'src/separated_list.dart';

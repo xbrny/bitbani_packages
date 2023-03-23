@@ -38,7 +38,7 @@ class BitTapableText extends StatelessWidget {
   }
 
   static TextStyle? buildNormalTextStyle(BuildContext context) =>
-      Theme.of(context).textTheme.bodyText1;
+      Theme.of(context).textTheme.bodyLarge;
 
   static TextStyle? buildActionTextStyle(BuildContext context, Color color) =>
       buildNormalTextStyle(context)

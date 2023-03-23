@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:result/result.dart';
 
 class ResultBuilder<T> extends StatelessWidget {
