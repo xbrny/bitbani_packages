@@ -17,11 +17,15 @@ class _VersionBuilderState extends State<VersionBuilder> {
   String version = 'Loading version';
   String buildNumber = '';
 
+  static Future<PackageInfo> getPackageInfoFromPlatform() async {
+    return await PackageInfo.fromPlatform();
+  }
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       try {
-        final packageInfo = await PackageInfo.fromPlatform();
+        final packageInfo = await getPackageInfoFromPlatform();
         version = 'v${packageInfo.version}';
         buildNumber = packageInfo.buildNumber;
       } catch (e) {
