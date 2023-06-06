@@ -9,6 +9,10 @@ class VersionBuilder extends StatefulWidget {
     String value,
   )? builder;
 
+  static Future<PackageInfo> getPackageInfoFromPlatform() async {
+    return await PackageInfo.fromPlatform();
+  }
+
   @override
   State<VersionBuilder> createState() => _VersionBuilderState();
 }
@@ -17,15 +21,11 @@ class _VersionBuilderState extends State<VersionBuilder> {
   String version = 'Loading version';
   String buildNumber = '';
 
-  static Future<PackageInfo> getPackageInfoFromPlatform() async {
-    return await PackageInfo.fromPlatform();
-  }
-
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       try {
-        final packageInfo = await getPackageInfoFromPlatform();
+        final packageInfo = await VersionBuilder.getPackageInfoFromPlatform();
         version = 'v${packageInfo.version}';
         buildNumber = packageInfo.buildNumber;
       } catch (e) {
